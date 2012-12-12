@@ -1,0 +1,41 @@
+
+<!doctype html>
+
+<head>
+   <style>
+   body { font: 12px "Myriad Pro", "Lucida Grande", sans-serif;}
+   .flowplayer { width: 100%; background-color: #222; }
+   </style>
+
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</head>
+
+<body>
+
+   <div id="player"></div>
+
+   <script>
+      var conf = $.parseJSON(unescape(location.search.slice(1)));
+
+      // sane conf
+      if (!conf || !conf.video) return;
+
+      // skin
+      $("<link/>", {
+         rel: 'stylesheet',
+         type: 'text/css',
+         href: '../dist/skin/' + (conf.skin || "minimalist") + '.css'
+
+      }).appendTo("head");
+
+      // player
+      $.getScript("../dist/" + (conf.key ? "commercial/" : "") + "flowplayer.js", function() {
+         conf.e = 1;
+         $("#player").addClass(conf.css).flowplayer(conf);
+      });
+
+      // analytics
+      if (conf.analytics) $.getScript("//www.google-analytics.com/ga.js");
+   </script>
+</body>
+

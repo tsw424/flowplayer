@@ -1,0 +1,32 @@
+
+<body>
+
+   <iframe
+      webkitAllowFullScreen mozallowfullscreen allowFullScreen
+      width="800"
+      height="340"
+      noresize
+      scrolling="no"
+      frameborder="0">
+   </iframe>
+
+   <script>
+   var conf = {
+      video: [
+         { webm: "http://stream.flowplayer.org/bauhaus/624x260.webm" },
+         { mp4: "http://stream.flowplayer.org/bauhaus/624x260.mp4" }
+      ],
+      ratio: .417,
+      skin: 'minimalist',
+      css: 'no-mute no-volume',
+      analytics: 'UA-19863497-1',
+      logo: 'http://moot.co.uk:8000/flowplayer/www/content/media/img/mylogo.png',
+      key: '$437712314481272',
+      origin: 'http://flowplayer.org/demos/complete/'
+   };
+
+   frames[0].location.href = "http://localhost:8000/flowplayer/flowplayer/iframe/index.html?" +
+      escape(JSON.stringify(conf));
+   </script>
+
+</body>

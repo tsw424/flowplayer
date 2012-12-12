@@ -24,14 +24,14 @@
       $("<link/>", {
          rel: 'stylesheet',
          type: 'text/css',
-         href: '../dist/skin/' + (conf.skin || "minimalist") + '.css'
+         href: '../dist/skin/' + (conf.embed.skin || "minimalist") + '.css'
 
       }).appendTo("head");
 
       // player
       $.getScript("../dist/" + (conf.key ? "commercial/" : "") + "flowplayer.js", function() {
          conf.e = 1;
-         $("#player").addClass(conf.css).flowplayer(conf);
+         $("#player").addClass(conf.embed.css).flowplayer(conf);
       });
 
       // analytics

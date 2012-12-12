@@ -16,7 +16,6 @@ JS=$(DIST)/flowplayer.js
 SKIN=$(DIST)/skin
 
 CDN=releases.flowplayer.org
-EMBED=embed.flowplayer.org
 CDN_PATH=""
 
 
@@ -45,7 +44,7 @@ raw:
 			lib/ext/subtitle.js\
 			lib/ext/analytics.js\
 			lib/ext/mobile.js\
-			lib/ext/embed.js | $(SET_VERSION) | sed "s/@EMBED/$(EMBED)/" | sed "s/@CDN/$(CDN)/" | sed "s/@CDN_PATH/$(CDN_PATH)/" >> $(JS)
+			lib/ext/embed.js | $(SET_VERSION) | sed "s/@CDN/$(CDN)/" | sed "s/@CDN_PATH/$(CDN_PATH)/" >> $(JS)
 
 	@ echo "}(jQuery);" >> $(JS)
 

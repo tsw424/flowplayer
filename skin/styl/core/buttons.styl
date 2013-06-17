@@ -8,16 +8,30 @@
          background 'url(%s.png) center no-repeat' % unquote(img_play)
          background-size 12%
 
+         .is-rtl&
+            background 'url(%s.png) center no-repeat' % unquote(img_play_rtl)
+            background-size 12%
+
          @media (-webkit-min-device-pixel-ratio: 2)
             background 'url(%s@x2.png) center no-repeat' % unquote(img_play)
             background-size 12%
 
+            .is-rtl&
+               background 'url(%s@x2.png) center no-repeat' % unquote(img_play_rtl)
+               background-size 12%
+
          .color-light&
             background-image 'url(%s.png)' % unquote(img_play_dark)
+
+            .is-rtl&
+               background-image 'url(%s.png)' % unquote(img_play_dark_rtl)
 
          @media (-webkit-min-device-pixel-ratio: 2)
             .color-light&
                background-image 'url(%s@x2.png)' % unquote(img_play_dark)
+
+               .is-rtl&
+                  background-image 'url(%s@x2.png)' % unquote(img_play_dark_rtl)
 
       .is-fullscreen&
          background-size auto
@@ -26,8 +40,8 @@
          background-image none
 
    .fp-logo
-      absolute auto spacing
-      bottom spacing * 5
+      absolute auto 15px
+      bottom controls_height + 10px
       cursor pointer
       display none
       z-index 100
@@ -38,6 +52,9 @@
       .is-embedded&
          display block
 
+      .fixed-controls&
+         bottom 15px
+
 
    .fp-fullscreen, .fp-unload, .fp-close
       absolute spacing auto
@@ -46,9 +63,40 @@
       bg 12px -197px
       cursor pointer
 
+      .is-rtl&
+         right auto
+         left spacing
+         bg 18px -197px
+
    .fp-unload, .fp-close
       bg 14px -175px
       display none
+
+      .is-rtl&
+         bg 14px -175px
+
+   .fp-play
+      display none
+      width play_width
+      height controls_height
+      bg 9px -24px
+      position absolute
+      bottom 0
+      left 0
+
+      .is-rtl&
+         bg 18px -24px
+         left auto
+         right 0
+
+      .play-button&
+         display block
+
+      .is-paused&
+         bg 9px 7px
+
+         .is-rtl&
+            bg 18px 7px
 
    &.is-ready.is-closeable
       .fp-unload
@@ -60,6 +108,9 @@
       .fp-fullscreen
          bg 10px -217px
          display block !important
+
+         .is-rtl&
+            bg 21px -217px
 
       .fp-unload, .fp-close
          display none !important

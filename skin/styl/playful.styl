@@ -1,7 +1,9 @@
 
 spacing           = 12px
 img               = 'img/playful_white'
+img_rtl           = 'img/playful_white_rtl'
 img_dark          = 'img/playful_black'
+img_dark_rtl      = 'img/playful_black_rtl'
 mute_width        = 38px
 mute_height       = 20px
 volume_height     = 11px
@@ -14,32 +16,56 @@ timeline_height   = volume_height
 
    // default colors
    .fp-controls
-      gradient #5 #1
+      background-color #1
 
    .fp-timeline, .fp-volumeslider
-      gradient #0 #7
+      bg #5
+      gradient rgba(#f, 0.01) rgba(#f, 0.3)
 
    .fp-buffer
-      bg rgba(#f, 0.5)
+      bg #e
 
-   .fp-progress, .fp-volumelevel
-      gradient lighten(green, 10) green
+   .fp-progress
+      background-color green
+
+   &.is-touch.is-mouseover .fp-progress:before
+      background-color green
+
+   .fp-volumelevel
+      bg #f
+
 
    .fp-mute
       block mute_width mute_height
       bg 0 -79px
 
+      .is-rtl&
+         bg 0 -79px
+
       .is-muted&
-         bg 0 -108px
+         bg 0 -109px
          opacity .85 !important
 
-      .no-volume&
-         bg 0 -108px
+   .fp-play
+      bg 9px -20px
+
+      .is-rtl&
+         bg 18px -20px
+
+      .is-paused&
+         bg 9px 11px
+
+         .is-rtl&
+            bg 18px 11px
 
    // border
    .fp-timeline, .fp-volumeslider
       border 1px inset
-      border-color #3 #6
+      border-color rgba(#0, 0.3) rgba(#1, 0.05)
+
+   // gradient
+   .fp-controls, .fp-progress
+      gradient rgba(#f, 0.3) rgba(#f, 0.01)
 
 
    // radius
@@ -48,18 +74,24 @@ timeline_height   = volume_height
 
    // light
    &.color-light
-
       .fp-controls
-         gradient #e #a
+         background-color #e
+         gradient rgba(#0, 0.01) rgba(#0, 0.3)
 
       .fp-timeline, .fp-volumeslider
          border-color #e #c
 
-
    &.color-alt
       .fp-progress, .fp-volumelevel
-         gradient #f #9
+         background-color #1
+
+      &.is-touch.is-mouseover .fp-progress:before
+         background-color #1
 
    &.color-alt2
       .fp-progress, .fp-volumelevel
-         gradient #c00 #900
+         background-color #900
+
+      &.is-touch.is-mouseover .fp-progress:before
+         background-color #900
+

@@ -11,7 +11,7 @@ DATE=$(shell git log -1 --pretty=format:%ad --date=short)
 SET_DATE=sed "s/@DATE/${DATE}/"
 
 # paths
-DIST=dist
+DIST=./dist
 JS=$(DIST)/flowplayer.js
 SKIN=$(DIST)/skin
 
@@ -32,7 +32,8 @@ raw:
 	@ cat LICENSE.js | $(SET_VERSION) | $(SET_DATE) > $(JS)
 	@ echo	"!function($$) { " >> $(JS)
 
-	@ cat	lib/flowplayer.js\
+	@ cat	deps/jquery.browser.js\
+			lib/flowplayer.js\
 			lib/ext/support.js\
 			lib/engine/*.js\
 			lib/ext/resolve.js\
@@ -52,7 +53,7 @@ raw:
 
 min: raw
 	# flowplayer.min.js
-	@ uglifyjs $(JS) > $(DIST)/flowplayer.min.js
+	@ uglifyjs $(JS) --comments '/flowplayer.org\/license/' --mangle -c >> $(DIST)/flowplayer.min.js
 	@ cat deps/branding.min.js >> $(DIST)/flowplayer.min.js
 
 # make all skins
@@ -79,13 +80,15 @@ flash:
 	@ cp lib/as/* $(DIST)
 	@ $(SET_VERSION) lib/as/Flowplayer.as > $(DIST)/Flowplayer.as
 	@ cp lib/logo/logo.swc $(DIST)
+	@ cp lib/as/Connection.as $(DIST)
 	@ cp skin/flash/icons.swc $(DIST)
-	@ cd $(DIST) && $(FLASH_COMPILE) -output flowplayer.swf -default-frame-rate 24 Flowplayer.as && rm *.as logo.*
+	@ cd $(DIST) && $(FLASH_COMPILE) -output flowplayer.swf Flowplayer.as -source-path ./ && rm *.as logo.*
 
 
-zip: concat min skins flash
+zip: min concat skins flash
 	@ cp index.html $(DIST)
 	@ cp LICENSE.md $(DIST)
+	@ cp deps/embed.min.js $(DIST)
 	@ rm -f $(DIST)/flowplayer.zip
 	cd $(DIST) && zip -r flowplayer-$(VERSION).zip * -x \*DS_Store
 

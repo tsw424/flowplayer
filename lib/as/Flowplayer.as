@@ -111,7 +111,7 @@ public class Flowplayer extends Sprite {
     /************ Public API ************/
 
         // switch url
-    public function play(url:String, reconnect:Boolean = false):void {
+    public function play(url:String):void {
         debug("play");
         if (!ready)  return;
         conf.url = url;
